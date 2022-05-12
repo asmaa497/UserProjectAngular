@@ -1,0 +1,157 @@
+<section class="vh-250 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');background-size: cover;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+
+
+
+
+
+
+
+<form class="m-5" [formGroup]="RegFormGroup" (ngSubmit)="Reg()">
+  <div class="mb-4">
+    <label for="UfullName" class="form-label">Full Name</label>
+    <input type="text" formControlName="fullName" class="form-control" name="UfullName" id="UfullName" 
+    [class.is-valid]="fullName.valid" [class.is-invalid]="fullName.invalid && fullName.touched" >
+    <div [hidden]="fullName.valid || fullName.untouched">
+        <small *ngIf="fullName.errors?.['required']" id="req" class="form-text text-muted d-block">Full Name is required</small>
+        <small *ngIf="fullName.errors?.['minlength']" id="min" class="form-text text-muted d-block">Full Name 
+          must be 5 char at least
+        </small>
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="UEmail" class="form-label">Email</label>
+    <input type="email" formControlName="email" class="form-control" name="UEmail" id="UEmail" 
+    [class.is-valid]="email.valid" [class.is-invalid]="email.invalid && email.touched" >
+    <div [hidden]="email.valid || email.untouched">
+      <small *ngIf="email.errors?.['email']" id="email" class="form-text text-muted d-block">Enter valid Email</small>
+    </div>
+  </div>
+  <div formGroupName="address">
+    <div class="mb-4">
+      <label for="UCity" class="form-label">City</label>
+      <input type="text" formControlName="city" required class="form-control" name="UCity" id="UCity" >
+    </div>
+
+    <div class="mb-4">
+      <label for="UPcode" class="form-label">Postal Code</label>
+      <input type="text" formControlName="postalCode" required class="form-control" name="UPcode" id="UPcode" >
+    </div>
+
+    <div class="mb-4">
+      <label for="UStreet" class="form-label">Street</label>
+      <input type="text" formControlName="street" required class="form-control" name="UStreet" id="UStreet" >
+    </div>
+  </div>
+  
+  <div formArrayName="mobileNum">
+    <div class="mb-4" *ngFor="let mobile of mobileNumArray.controls; let i=index">
+      <label for="Umob + {{i}}" class="form-label">Mobile No. {{i+1}}</label>
+      <input type="text" [formControlName]="i" class="form-control" name="Umob + {{i}}" id="Umob + {{i}}"
+        placeholder="Enter Mobile" [class.is-valid]=" mobileNumArray.controls[i].valid" 
+          [class.is-invalid]="mobileNumArray.controls[i].invalid && mobileNumArray.controls[i].touched">
+        <div [hidden]="mobileNumArray.controls[i].valid || mobileNumArray.controls[i].untouched">
+          <small *ngIf="mobileNumArray.controls[i].errors?.['pattern']" id="pattern" 
+            class="form-text text-muted d-block">Enter valid Phone</small>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger " (click)="addPhone()">+</button>
+    <button type="button" class="btn btn-success mx-2" (click)="removePhone()">-</button>
+  </div>
+
+
+  <!-- <div formArrayName="mobileNum">
+    <div class="mb-4" *ngFor="let mobile of mobileNumArray.controls; let i=index">
+      <label for="Umob + {{i}}" class="form-label">Mobile No. {{i+1}}</label>
+      <input type="text" [formControlName]="i" class="form-control" name="Umob + {{i}}" id="Umob + {{i}}"
+        placeholder="Enter Mobile" [class.is-valid]="mobileNumArray.valid" [class.is-invalid]="mobileNumArray.invalid && mobileNumArray.touched">
+        <div [hidden]="mobileNumArray.valid || mobileNumArray.untouched">
+          <small *ngIf="mobileNumArray.errors?.['pattern']" id="pattern" class="form-text text-muted d-block">Enter valid Phone</small>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger " (click)="addPhone()">+</button>
+    <button type="button" class="btn btn-success mx-2" (click)="removePhone()">-</button>
+  </div> -->
+
+  <div class="mb-4">
+    <label class="form-label mx-2">which day do you want ? </label>
+    <div class="btn-group" role="group">
+      <input type="radio" formControlName="deliveryOptions" value="AnyDay" (change)="setDeliveryOptions()"
+        class="btn-check" name="deliveryOptions" id="AnyDay" autocomplete="off">
+      <label class="btn btn-outline-primary" for="AnyDay">Any Day</label>
+
+      <input type="radio" formControlName="deliveryOptions" value="SpecificDay" (change)="setDeliveryOptions()"
+        class="btn-check" name="deliveryOptions" id="SpecificDay" autocomplete="off">
+      <label class="btn btn-outline-primary" for="SpecificDay">Specific Day</label>   
+    </div>
+  </div>
+
+  <div class="mb-4" [hidden]="deliveryOptions.value!='SpecificDay'">
+    <label for="SpeDays" class="form-label">Please Enter the Day:</label>
+    <input type="text" formControlName="specificDays" class="form-control" name="SpeDays" id="SpeDays"
+      placeholder="">
+  </div>
+
+  <div class="mb-4">
+    <label for="UPassword" class="form-label">Password</label>
+    <input type="password" formControlName="password" class="form-control" name="UPassword" id="UPassword" 
+    placeholder="" [class.is-valid]="password.valid" [class.is-invalid]="password.invalid && password.touched">
+    <div [hidden]="password.valid || password.untouched">
+      <small *ngIf="password.errors?.['required']" id="req" class="form-text text-muted d-block">Passowrd is required</small>
+      <small *ngIf="password.errors?.['minlength']" id="min" class="form-text text-muted d-block">Passowrd 
+        must be 5 char at least
+      </small>
+  </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="UConfirmPass" class="form-label">Confirm Password</label>
+    <input type="password" formControlName="confirmPassword" class="form-control" name="UConfirmPass" id="UConfirmPass"
+      placeholder="">
+  </div>
+
+  <div *ngIf="RegFormGroup.errors?.['passwordMismatch'] && (confirmPassword.touched || password.touched)"
+  class="cross-validation-error-message alert alert-danger">
+  Password and confirm password don't match.
+</div>
+
+  <!-- <div *ngIf="userRegisterFormGroup.errors?.['passwordMismatch'] && (confirmPassword.touched || password.touched)"
+    class="cross-validation-error-message alert alert-danger">
+    Password and confirm password don't match.
+  </div> -->
+
+  <button [disabled]="RegFormGroup.invalid" type="submit" class="btn btn-success">Submit</button>
+
+</form>
+<!--
+<div class="bg-warning">
+  <h4>
+    <div>[For Test] To be removed:</div>
+    <div>{{RegFormGroup.value | json}}</div>
+     <div>{{reachedBy.value}}</div> 
+  </h4>
+</div>
+-->
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

@@ -1,0 +1,31 @@
+<!-- <input #feedback type="text"
+class="form-control"   placeholder="Your feedback" value="this is my feedback">
+   -->
+
+
+<div class="mb-3">
+  <label for="" class="form-label">Select Category</label>
+  <select class="form-control" name="cat" id="CatSel" title="catgory" [(ngModel)]="selectedCatID">
+    <option value="0">Select All</option>
+    <option *ngFor="let cat of category" [value]="cat.id">{{cat.name}}</option>
+  </select>
+</div>
+<div>
+  <app-products [receivedSelCatID]="selectedCatID" (onAddToCart)="showCart($event)"></app-products>
+</div>
+
+<!-- <table class="table">
+    
+  <ng-container *ngFor="let item of ReceivedCartItems ;let i = index"  >
+    <tr >
+    <td>{{ i+1 }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.price }}</td>
+    <td><button type="button" class="btn btn-info bg-lightblue" (click)="decrease(item)">-</button> 
+      {{ item.count }} 
+    <button type="button" class="btn btn-info" (click)="increase(item)">+</button></td>
+    <td>{{ item.total }}</td>
+    <td><button (click)="RemoveItem(item)">Remove Item</button></td>
+    </tr>
+  </ng-container>
+</table> -->

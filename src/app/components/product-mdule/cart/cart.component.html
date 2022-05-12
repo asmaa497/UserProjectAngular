@@ -1,0 +1,126 @@
+<section>
+<!-- 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <ng-container *ngFor="let item of cartItems">
+      <tr>
+
+        <td>{{ item.name }}</td>
+        <td>{{ item.price |currency:'EGP' }}</td>
+        <td>
+          <button type="button" class="btn btn-info bg-lightblue" (click)="decrease(item)">-</button> {{ item.count }}
+          <button type="button" class="btn btn-info" (click)="increase(item)">+</button>
+        </td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.total }}</td>
+        <td><button type="button" class="btn btn-info bg-red" (click)="Remove(item)">Remove</button></td>
+        <td></td>
+
+
+        <td> <span class="w-2">  <img [src]="CreateImgPath(item.img)" width="40%" height="10%" /></span></td>
+
+      </tr>
+    </ng-container>
+  </table>
+
+  <h1>Total Price : {{totalPrice}}</h1>
+  <button type="button" style="width: 50%;margin-left: 20%;" (click)="confirm()" class="btn btn-info">Place
+    Order</button> -->
+
+
+
+<!------------------------------------------------------------------------------------->
+
+<div >
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+
+          <!-- Shopping cart table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Product</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Total</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Remove</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of cartItems">
+                <tr>
+                  <th scope="row" class="border-0">
+                    <div class="p-2">
+                      <img [src]="CreateImgPath(item.img)" alt="" width="70"
+                        class="img-fluid rounded shadow-sm">
+                      <div class="ml-3 mx-2 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{item.name}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Price :
+                          {{item.price}}</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="border-0 align-middle">
+                    <button type="button" class="btn btn-info bg-lightblue" (click)="decrease(item)">-</button>
+                    <strong style="margin: 3%;"> {{item.count}}</strong>
+                    <button type="button" class="btn btn-info bg-lightblue" (click)="increase(item)">+</button>
+                  </td>
+
+                  <td class="border-0 align-middle"><strong>{{item.total}}</strong></td>
+                  <td class="border-0 align-middle"><a (click)="Remove(item)" role="button" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                </tr>
+              </ng-container>
+              </tbody>
+            </table>
+          </div>
+          <!-- End -->
+        </div>
+      </div>
+
+      <div class="row py-5 p-4 bg-white rounded shadow-sm">
+    
+        <div class="col-lg-6" style="margin-left: 25%;">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+          <div class="p-4">
+            <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal
+                </strong><strong>${{totalPrice}}</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and
+                  handling</strong><strong>$00.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                  class="text-muted">Tax</strong><strong>$0.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                <h5 class="font-weight-bold">${{totalPrice}}</h5>
+              </li>
+            </ul><a  role="button" (click)="confirm()" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</section>

@@ -1,0 +1,115 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/Home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Order" routerLinkActive="active">Order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Products" routerLinkActive="active">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/AboutUs" routerLinkActive="active">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/ContactUs" routerLinkActive="active">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" [hidden]="Islogged" routerLinkActive="active">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout" [hidden]="!Islogged" routerLinkActive="active">Log Out</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/User/UserProfile" routerLinkActive="active">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/User/EditProfile" routerLinkActive="active">Edit Profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<img src="assets/myImg.jpg" class="img-fluid" width="100%" height="20%"  > -->
+
+
+<!--------------------------------------  Template  ------------------------------------------>
+<header id="header" class="header fixed-top" data-scrollto-offset="0">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <a  href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1 class="mx-5">HeroBiz<span>.</span></h1>
+    </a>
+
+    <nav id="navbar" class="navbar" >
+      <ul>
+
+        <li class="dropdown"><a href="#"><span>Home</span> </a>
+          
+        </li>
+
+        
+        <li><a class="nav-link scrollto" routerLink="Pro/Order" href="">Products</a></li>
+        <li><a class="nav-link scrollto" href="" routerLink="/AboutUs">About Us</a></li>
+        <!-- <li><a class="nav-link scrollto" href="">Contact Us</a></li> -->
+        
+        <!-- <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li>
+              <a href="#">Column 1 link 1</a>
+              <a href="#">Column 1 link 2</a>
+              <a href="#">Column 1 link 3</a>
+            </li>
+            <li>
+              <a href="#">Column 2 link 1</a>
+              <a href="#">Column 2 link 2</a>
+              <a href="#">Column 3 link 3</a>
+            </li>
+            <li>
+              <a href="#">Column 3 link 1</a>
+              <a href="#">Column 3 link 2</a>
+              <a href="#">Column 3 link 3</a>
+            </li>
+            <li>
+              <a href="#">Column 4 link 1</a>
+              <a href="#">Column 4 link 2</a>
+              <a href="#">Column 4 link 3</a>
+            </li>
+          </ul>
+        </li> -->
+        <li class="dropdown" ><a ><span>Account</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li><a routerLink="User/register" [hidden]="Islogged"  href="">Register</a></li>
+    
+            <li><a routerLink="User/login" [hidden]="Islogged" href="">Log in</a></li>
+            <li><a (click)="logout()" [hidden]="!Islogged"  href="">Log Out</a></li>
+            
+          </ul>
+        </li>
+        <li [hidden]="!Islogged"><a routerLink="Pro/cart"  class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+          <span > <i class="fas fa fa-shopping-cart fa-lg" style="font-size: 40px;"></i> </span>
+          <span class="cart-basket d-flex align-items-center justify-content-center" style="width: 30px;height:20px;margin-right: 10px;">
+            {{cartItemsNumber}}
+          </span>
+        </a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle d-none"></i>
+    </nav>
+
+    <!-- <a class="btn-getstarted scrollto" href="index.html#about">Get Started</a> -->
+
+  </div>
+</header><!-- End Header -->
+
